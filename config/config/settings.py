@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.promos',
     'apps.step_stage',
     'apps.users',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -141,10 +142,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'My API',
     'DESCRIPTION': 'My API description',
     'VERSION': '1.0.0',
+}
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'AUTH_HEADER_TYPES': ('Bearer',),
 }

@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from .models import Role, Profile
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
@@ -37,3 +39,52 @@ class UserListSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name')
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # 🔹 Add custom claims inside the token
+        token['user_id'] = user.id
+        token['username'] = user.username
+        token['first_name'] = user.first_name  
+        token['last_name'] = user.last_name
+
+        return token        
+
+class RoleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Role
+        fields = '__all__'
+
+class AssignRoleSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField(required=True)
+    role_id = serializers.IntegerField(required=True)
+
+    def validate(self, data):
+        # Validate the user exists
+        try:
+            user = User.objects.get(id=data['user_id'])
+        except User.DoesNotExist:
+            raise serializers.ValidationError({"user_id": "User not found."})
+
+        # Validate the role exists
+        try:
+            role = Role.objects.get(id=data['role_id'])
+        except Role.DoesNotExist:
+            raise serializers.ValidationError({"role_id": "Role not found."})
+
+        data['user'] = user
+        data['role'] = role
+        return data
+
+    def save(self):
+        user = self.validated_data['user']
+        role = self.validated_data['role']
+
+        # Assign the role to the user's profile
+        profile, created = Profile.objects.get_or_create(user=user)
+        profile.role = role
+        profile.save()
+        return profile
