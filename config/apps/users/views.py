@@ -20,7 +20,7 @@ from .models import Role
 class UserRegistrationView(GenericAPIView):
     serializer_class = UserRegistrationSerializer
     queryset = User.objects.all()
-    permission_classes = [AllowAny]  # Allow anyone to register
+    permission_classes = [IsAuthenticated]  # Don't Allow anyone to register
 
     def post(self, request, *args, **kwargs):
         """Handle user registration"""

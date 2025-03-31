@@ -145,6 +145,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+   'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',  # JSON response
+        'rest_framework.renderers.BrowsableAPIRenderer',  # Browsable API
+    ],
 }
 
 SPECTACULAR_SETTINGS = {

@@ -5,6 +5,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import Role, Profile
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
+    
     password = serializers.CharField(
         write_only=True, required=True, validators=[validate_password], 
         style={'input_type': 'password'}
@@ -16,16 +17,17 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'password', 'password2')
+        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'password2')
 
     def validate(self, attrs):
         """Ensure passwords match."""
         if attrs['password'] != attrs['password2']:
-            raise serializers.ValidationError({"password": "Passwords do not match."})
+            raise serializers.ValidationError({"password": "The two password fields must match."})
         return attrs
 
     def create(self, validated_data):
         validated_data.pop('password2')  # Remove password2 before saving
+        validated_data['username'] = validated_data['username'].lower()  # Normalize username
         user = User.objects.create(
             username=validated_data['username'],
             first_name=validated_data['first_name'],
@@ -50,6 +52,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['first_name'] = user.first_name  
         token['last_name'] = user.last_name
+        if user.profile and user.profile.role:
+            token['role'] = user.profile.role.name
 
         return token        
 
