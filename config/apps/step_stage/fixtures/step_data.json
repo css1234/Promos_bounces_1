@@ -1,0 +1,12 @@
+[
+    {"model": "step_stage.step", "pk": 1, "fields": {"step_name": "الاولى", "step_duration": 5}},
+    {"model": "step_stage.step", "pk": 2, "fields": {"step_name": "الثانية", "step_duration": 5}},
+    {"model": "step_stage.step", "pk": 3, "fields": {"step_name": "الثالثة", "step_duration": 5}},
+    {"model": "step_stage.step", "pk": 4, "fields": {"step_name": "الرابعة", "step_duration": 5}},
+    {"model": "step_stage.step", "pk": 5, "fields": {"step_name": "الخامسة", "step_duration": 5}},
+    {"model": "step_stage.step", "pk": 6, "fields": {"step_name": "السادسة", "step_duration": 4}},
+    {"model": "step_stage.step", "pk": 7, "fields": {"step_name": "السابعة", "step_duration": 4}},
+    {"model": "step_stage.step", "pk": 8, "fields": {"step_name": "الثامنة", "step_duration": 4}},
+    {"model": "step_stage.step", "pk": 9, "fields": {"step_name": "التاسعة", "step_duration": 4}},
+    {"model": "step_stage.step", "pk": 10, "fields": {"step_name": "العاشرة", "step_duration": 4}}
+]
