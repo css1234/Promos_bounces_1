@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_app
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_PORT=1433
+      - DATABASE_NAME=PromoDb
+      - DATABASE_USER=sa
+      - DATABASE_PASSWORD=YourStrong!Password
+      - DEBUG=True
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sql_server
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Password
+    volumes:
+      - sql_data:/var/opt/mssql
+
+volumes:
+  sql_data:

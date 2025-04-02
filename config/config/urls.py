@@ -9,4 +9,6 @@ urlpatterns = [
     path('schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('users/', include('apps.users.url')),  # Include the users app URLs
     path('users/',include('apps.users.url')),
+    path('', include('apps.employee.urls')),  # Include the employee app URLs
+    path('', include('apps.step_stage.urls')),  # Include the step_stage app URLs
 ]
