@@ -11,4 +11,5 @@ urlpatterns = [
     path('users/',include('apps.users.url')),
     path('', include('apps.employee.urls')),  # Include the employee app URLs
     path('', include('apps.step_stage.urls')),  # Include the step_stage app URLs
+    path('', include('apps.promos.urls')),  # Include the promos app URLs
 ]

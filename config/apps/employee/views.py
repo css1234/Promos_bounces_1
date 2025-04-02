@@ -17,17 +17,6 @@ class DegreeViewSet(BaseModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_class = DegreeFilter  # Apply filters
 
-    # def retrieve(self, request, *args, **kwargs):
-    #     instance = self.get_object()
-    #     serializer = self.get_serializer(instance)
-    #     return Response({
-    #         "success": True,
-    #         "message": "Degree retrieved successfully",
-    #         "data": {
-    #             "degree": serializer.data
-    #         }
-    #     })
-
 
 class EmployeeViewSet(BaseModelViewSet):
     queryset = Employee.objects.select_related('degree').all().order_by('-appointment_date')
