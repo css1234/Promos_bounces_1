@@ -15,6 +15,12 @@ from datetime import timedelta
 import os
 from dotenv import load_dotenv
 
+try:
+    import psycopg2
+except ImportError:
+    from django.core.exceptions import ImproperlyConfigured
+    raise ImproperlyConfigured("Error loading psycopg2 module. Ensure it is installed.")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -86,23 +92,35 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'PromoDb',
+#         'USER': '',
+#         'PASSWORD': '',
+#         'HOST': 'hassan',
+#         'PORT': '',  # Default is usually 1433
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',  # Make sure you have this driver installed
+#             'trusted_connection': 'yes',
+#             'multipleactiveresultsets': 'true',
+#             'integrated_security': 'true',
+#             'trustservercertificate': 'true',
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'PromoDb',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'hassan',
-        'PORT': '',  # Default is usually 1433
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',  # Make sure you have this driver installed
-            'trusted_connection': 'yes',
-            'multipleactiveresultsets': 'true',
-            'integrated_security': 'true',
-            'trustservercertificate': 'true',
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'promodb',
+        'USER': 'hassan',
+        'PASSWORD': 'Qwer@123',
+        'HOST': 'localhost',  # Change to your PostgreSQL server IP if remote
+        'PORT': '5432',
     }
 }
+
 
 
 # Password validation
