@@ -1,7 +1,9 @@
 # filepath: d:\Promos_bounces_1\config\apps\users\url.py
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import UserRegistrationView, UserListView, CustomTokenObtainPairView, RoleViewSet, AssignRoleView
+
+from .views import (AssignRoleView, CustomTokenObtainPairView, RoleViewSet,
+                    UserListView, UserRegistrationView)
 
 router = DefaultRouter()
 router.register(r'roles', RoleViewSet, basename='role')

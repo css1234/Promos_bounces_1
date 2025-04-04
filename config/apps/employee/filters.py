@@ -1,6 +1,8 @@
 
 import django_filters
+
 from .models import Degree, Employee
+
 
 class DegreeFilter(django_filters.FilterSet):
     degree_name = django_filters.CharFilter(lookup_expr='icontains')  # Case-insensitive search

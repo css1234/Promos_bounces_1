@@ -1,6 +1,7 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import StepViewSet, StageViewSet
+
+from .views import StageViewSet, StepViewSet
 
 router = DefaultRouter()
 router.register(r'steps', StepViewSet)

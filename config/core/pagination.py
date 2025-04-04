@@ -1,5 +1,6 @@
 from rest_framework.pagination import PageNumberPagination
 
+
 class CustomPageNumberPagination(PageNumberPagination):
     """
     Custom pagination that allows clients to set page_size via query params.

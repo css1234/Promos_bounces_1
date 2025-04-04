@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand
-from apps.step_stage.models import Step, Stage
+
+from apps.step_stage.models import Stage, Step
+
 
 class Command(BaseCommand):
     help = "Seed initial Step and Stage data into the database"

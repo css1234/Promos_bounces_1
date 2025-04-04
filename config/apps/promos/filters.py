@@ -1,6 +1,8 @@
 
 import django_filters
-from .models import IssuingAuthority , PromotionOrder , SanctionOrder , Promotion
+
+from .models import IssuingAuthority, Promotion, PromotionOrder, SanctionOrder
+
 
 class IssuingAuthorityFilter(django_filters.FilterSet):
     issuing_authority_name = django_filters.CharFilter(lookup_expr='icontains')  # Case-insensitive search

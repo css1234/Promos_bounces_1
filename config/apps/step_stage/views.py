@@ -1,9 +1,12 @@
-from rest_framework import permissions
-from .models import Step , Stage
-from .serializers import StepSerializer, StageSerializer
-from core.views import BaseModelViewSet
-from core.pagination import CustomPageNumberPagination
 from drf_spectacular.utils import extend_schema
+from rest_framework import permissions
+
+from core.pagination import CustomPageNumberPagination
+from core.views import BaseModelViewSet
+
+from .models import Stage, Step
+from .serializers import StageSerializer, StepSerializer
+
 
 @extend_schema(
     request=StepSerializer,

@@ -1,5 +1,7 @@
 from rest_framework import serializers
+
 from .models import Degree, Employee
+
 
 class DegreeSerializer(serializers.ModelSerializer):
     class Meta:

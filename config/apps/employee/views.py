@@ -1,13 +1,18 @@
 # my_app/views.py
-from rest_framework import viewsets, permissions
-from rest_framework.pagination import PageNumberPagination  # Replace with default pagination if needed
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import permissions, viewsets
+from rest_framework.pagination import \
+    PageNumberPagination  # Replace with default pagination if needed
 from rest_framework.response import Response
+
+from core.pagination import \
+    CustomPageNumberPagination  # Ensure this pagination class exists
+from core.views import BaseModelViewSet  # Ensure this base viewset exists
+
+from .filters import DegreeFilter, EmployeeFilter  # Ensure these filters exist
 from .models import Degree, Employee
 from .serializers import DegreeSerializer, EmployeeSerializer
-from core.pagination import CustomPageNumberPagination  # Ensure this pagination class exists
-from django_filters.rest_framework import DjangoFilterBackend
-from .filters import DegreeFilter, EmployeeFilter  # Ensure these filters exist
-from core.views import BaseModelViewSet  # Ensure this base viewset exists
+
 
 class DegreeViewSet(BaseModelViewSet):
     queryset = Degree.objects.all().order_by('degree_id')

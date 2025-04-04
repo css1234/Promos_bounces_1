@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Step(models.Model):
     step_id = models.AutoField(primary_key=True)
     step_name = models.CharField(max_length=255,verbose_name="Step Name")

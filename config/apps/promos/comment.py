@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 class Comment:
     def __init__(self, email, content, created=None):
         self.email = email

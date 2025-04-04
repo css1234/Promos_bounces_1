@@ -1,7 +1,9 @@
 from rest_framework import serializers
+
 from apps.employee.models import Employee
-from apps.promos.models import IssuingAuthority, PromotionOrder, SanctionOrder, Promotion
 from apps.employee.serializers import EmployeeSerializer
+from apps.promos.models import (IssuingAuthority, Promotion, PromotionOrder,
+                                SanctionOrder)
 
 
 class IssuingAuthoritySerializer(serializers.ModelSerializer):

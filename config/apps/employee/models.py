@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Degree(models.Model):
     degree_id = models.AutoField(primary_key=True)
     degree_name = models.CharField(max_length=255, verbose_name="Degree Name")

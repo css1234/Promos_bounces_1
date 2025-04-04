@@ -1,5 +1,7 @@
 from django.db import models
+
 from apps.employee.models import Employee
+
 
 class IssuingAuthority(models.Model): 
     issuing_authority_id = models.AutoField(primary_key=True)

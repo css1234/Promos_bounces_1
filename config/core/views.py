@@ -1,6 +1,8 @@
+from rest_framework import status, viewsets
 from rest_framework.response import Response
-from rest_framework import viewsets, status
+
 from .utils import custom_api_response
+
 
 class BaseModelViewSet(viewsets.ModelViewSet):
     """

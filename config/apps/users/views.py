@@ -1,16 +1,19 @@
-from rest_framework.generics import GenericAPIView, ListAPIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.exceptions import PermissionDenied
-from rest_framework.views import APIView
-from .serializers import UserRegistrationSerializer, UserListSerializer, RoleSerializer, AssignRoleSerializer
 from django.contrib.auth.models import User
 from drf_spectacular.utils import extend_schema
+from rest_framework import status
+from rest_framework.exceptions import PermissionDenied
+from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
-from .serializers import CustomTokenObtainPairSerializer
+
 from .models import Role
+from .serializers import (AssignRoleSerializer,
+                          CustomTokenObtainPairSerializer, RoleSerializer,
+                          UserListSerializer, UserRegistrationSerializer)
+
 
 @extend_schema(
     request=UserRegistrationSerializer,
